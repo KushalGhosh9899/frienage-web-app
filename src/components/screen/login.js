@@ -51,7 +51,7 @@ const Login = () => {
                         {/* For Email Input Field */}
                         <div class="input-field col s6 text-fields">
                             <i class="material-icons prefix">account_circle</i>
-                            <input className="text-input" type="email" placeholder="Enter your Username" value={email}
+                            <input className="text-input" type="email" placeholder="Enter your Email ID" value={email}
                                 onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
@@ -81,25 +81,6 @@ const Login = () => {
                 </div>
 
             </div>
-            {/* <div className="card auth-card">
-                <h2>Instagram</h2>
-                <input
-                type="email"
-                placeholder="email"
-                value={email}
-                onChange={(e)=>setEmail(e.target.value)}
-                />
-                <input
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                />
-                <button className="waves-effect waves-light btn"
-                onClick={()=>PostData()}>Login</button>
-                <h6>Already have an account? <Link className="link" to='/Signup'>Signup</Link></h6>
-                <h6>Forgot Password?<Link className="link" to='/reset-password'>Reset</Link></h6>
-            </div> */}
         </div>
     )
 }
