@@ -1,58 +1,179 @@
-a{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+a {
     color: black!important;
 }
-.auth-card{
-    margin:20vh auto;
+
+.auth-card {
+    margin: 20vh auto;
     max-width: 40%;
     padding: 50px;
     text-align: center;
 }
-.link{
-    color: blue !important;
+
+.link {
+    color: #00C5FF !important;
 }
-.profile-top{
+
+.profile-top {
     display: flex;
     justify-content: space-around;
     margin: 18px 0px;
     border-bottom: 1px solid grey;
 }
-.profile-contents{
+
+.profile-contents {
     margin: auto 0;
     align-items: center;
 }
-.profile-stats{
-    display:flex;
+
+.profile-stats {
+    display: flex;
     justify-content: space-between;
     width: 109%;
 }
-.gallery{
+
+.gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.item{
-    width:40vh;
+
+.item {
+    width: 40vh;
     height: 40vh;
     object-fit: cover;
     object-position: center;
 }
-.home{
+
+.home {
     margin: 50px 0px;
 }
-.home-card{
+
+.home-card {
     max-width: 60%;
     height: max-content;
     margin: 50px auto;
     padding: 20px;
 }
-#toast-container{
+
+#toast-container {
     top: 70%!important;
     left: auto !important;
     right: 45%!important;
 }
-i{
+
+i {
     cursor: pointer;
 }
-.collection-item{
+
+.collection-item {
     width: 100%;
+}
+
+.login-container {
+    width: 98vw;
+    height: 93vh;
+    display: flex;
+    margin: 0!important;
+}
+
+.svg-graphics {
+    background: rgba(0, 197, 255, .1);
+    width: 60%;
+    height: 100%;
+    border-radius: 0px 50px 50px 0px;
+}
+
+.login-card {
+    width: 40%;
+    margin:auto 0;
+}
+
+.login-card>div {
+    margin: 0 20%;
+}
+
+.login-svg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    top: 25%;
+}
+
+.text-fields {
+    border: 1px solid #00C5FF!important;
+    padding: 7px 10px;
+    border-radius: 15px;
+    background: rgba(0, 197, 255, .1);
+    margin: 7% 0;
+}
+
+.text-input::placeholder, input:focus {
+    color: #00C5FF
+}
+
+.input-field .prefix.active {
+    color: #00C5FF;
+}
+
+.prefix {
+    color: #00C5FF;
+}
+
+.input-field input[type=email], .input-field input[type=password] {
+    border-bottom: none!important;
+    margin: 0px 3rem;
+}
+
+.input-field input[type=email]:focus, .input-field input[type=password]:focus {
+    border-bottom: none!important;
+    box-shadow: none!important;
+}
+
+.input-field .prefix {
+    top: 1rem;
+}
+.btn-long{
+    width: 100%;
+    color: white;
+    background-color: #00C5FF;
+    border:none;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+.btn-long:hover{
+    cursor: pointer;
+    border:1px solid #00C5FF;
+    background-color: white;
+    color:#00C5FF;
+    font-weight: bold;
+}
+.divider{
+    margin: 10% 0;
+}
+.group-txt{
+    display: flex;
+    margin: 5% 0;
+    width: 100%;
+}
+.txt-lower{
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing: 0.1rem;
+}
+.top-heading{
+    font-weight: bolder;
+    font-size:  4.5rem;
+    margin-bottom: 20%;
+    text-align: center;
+    color: #00C5FF;
+    font-variant: small-caps;
 }
