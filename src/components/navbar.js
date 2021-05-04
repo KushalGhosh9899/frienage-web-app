@@ -50,9 +50,10 @@ const Navbar = () => {
       setUserDetails(results.user)
     })
   }
-  return (<nav>
-    <div className="nav-wrapper white">
-      <Link to={state ? "/" : "/login"} className="brand-logo">Instagram</Link>
+  return (
+    <nav className="transparent z-depth-0">
+    <div className="nav-wrapper">
+      <Link to={state ? "/" : "/startup"} className="brand-logo">Instagram</Link>
       <ul id="nav-mobile" className="right">
         {renderList()}
       </ul>
@@ -81,7 +82,8 @@ const Navbar = () => {
         <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>Close</button>
       </div>
     </div>
-  </nav>)
+    </nav>
+  )
 }
 
 export default Navbar;

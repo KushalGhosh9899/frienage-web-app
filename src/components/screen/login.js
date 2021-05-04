@@ -4,9 +4,9 @@ import { userContext } from '../../App';
 import M from 'materialize-css';
 import loginImage from '../../images/loginscreen.svg'
 
-document.title = "Login | Friengage";
 
 const Login = () => {
+    document.title = "Login | Friengage";
     const { state, dispatch } = useContext(userContext);
     const History = useHistory();
     const [password, setPassword] = useState("");

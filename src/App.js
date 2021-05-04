@@ -11,6 +11,7 @@ import UserProfile from './components/screen/UserProfile';
 import SubscriberUserPosts from './components/screen/subscriberPost';
 import Reset from './components/screen/reset';
 import NewPassword from './components/screen/newPassword';
+import Startup from './components/screen/startup';
 
 import { reducer, initialState } from './reducers/userReducer';
 
@@ -25,7 +26,7 @@ const Routing = () => {
       dispatch({type:"USER",payload:user});
     }else{
       if(!history.location.pathname.startsWith('/reset-password')){
-          history.push('/login');
+          history.push('/startup');
       }
     }
   },[])
@@ -33,6 +34,9 @@ const Routing = () => {
     <Switch>
       <Route path="/" exact>
         <Home />
+      </Route>
+      <Route path="/startup" >
+        <Startup />
       </Route>
       <Route path="/login" >
         <Login />

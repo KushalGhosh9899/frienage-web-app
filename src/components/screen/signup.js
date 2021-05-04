@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import M from 'materialize-css';
-import signupImage from '../../images/signupscreen.svg'
+import signupImage from '../../images/signupscreen.svg';
 
-document.title = "Signup  | Friengage";
+
 
 const Signup = () => {
+    document.title = "Signup | Friengage";
     const History = useHistory();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
