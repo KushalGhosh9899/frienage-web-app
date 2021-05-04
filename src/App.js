@@ -12,6 +12,7 @@ import SubscriberUserPosts from './components/screen/subscriberPost';
 import Reset from './components/screen/reset';
 import NewPassword from './components/screen/newPassword';
 import Startup from './components/screen/startup';
+import Footer from './components/screen/footer';
 
 import { reducer, initialState } from './reducers/userReducer';
 
@@ -75,6 +76,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routing />
+        <Footer />
       </BrowserRouter>
     </userContext.Provider>
   );

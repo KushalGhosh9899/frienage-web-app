@@ -29,8 +29,7 @@ const Navbar = () => {
       ]
     } else {
       return [
-        <li key="5"><Link to="/login">Login</Link></li>,
-        <li key="6"><Link to="/signup">Signup</Link></li>
+        <Link to="/login"><button className="btn-default dark waves-effect waves-light">sign in</button></Link>
       ]
     }
   }

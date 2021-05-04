@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 body {
     font-family: 'Montserrat', sans-serif !important;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 a {
@@ -201,4 +204,102 @@ i {
 }
 .nav-wrapper{
     box-shadow: none;
+}
+.btn-default, .btn{    
+    width: 100%;
+    border:none;
+    padding: 1rem 3rem;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+.dark{
+    color: white;
+    background-color: #00C5FF;
+}
+.dark:hover{
+    cursor: pointer;
+    color: #00C5FF;
+    background-color:white ;
+    border:1px solid #00C5FF;    
+}
+.light{    
+    color: #00C5FF;
+    background-color:white ;
+    border:1px solid #00C5FF;
+}
+.light:hover{
+    color: white;
+    background-color: #00C5FF;
+}
+nav ul a:hover {
+    background-color: white!important;
+}
+.page-footer{ 
+    padding-top: 4%!important;  
+    background: rgba(0, 197, 255, .1);
+}
+.footer-text-heading {
+    color:#00C5FF;
+    margin-bottom: 3rem!important;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+.footer-text-sub{
+    color:#00C5FF;
+    font-size: 1.15rem;
+    letter-spacing: 0.15rem;
+}
+.footer-text{
+    color: black !important;
+}
+.links:hover{
+    padding: 2% 5%;
+    background-color: #00C5FF;
+    color:white!important;
+}
+.links:hover::before{
+    content: "> ";
+}
+.footer-text-main-heading{
+    font-size: 3.5rem;
+    letter-spacing: 0.15rem;
+    color:#00C5FF!important;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: bolder;
+}
+.footer-divider{
+    margin:1rem 0!important;
+}
+.footer-container{
+    padding: 3rem 0!important;
+}
+.footer-logo{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+.footer-row{
+    margin-bottom: 0!important;
+}
+.contact-links{
+    color:#00C5FF!important;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+.contact-icon{
+    font-size: 1rem!important;
+    margin-top: 0.2rem!important;
+    margin-right: 0.4rem!important;
+}
+.contact-span{
+    display: flex;
+    justify-content: center;
+}
+.list-items{
+    margin: 1rem 0;
 }

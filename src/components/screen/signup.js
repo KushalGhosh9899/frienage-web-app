@@ -106,7 +106,7 @@ const Signup = () => {
                         <div className="divider"></div>
 
                         <h6 className="txt-lower" style={{ textAlign: "center" }}
-                        >Already have an Account? <Link className="link" to='/login'>Login</Link></h6>
+                        >Already have an Account? <Link className="link" to='/login'>Sign In</Link></h6>
                     </div>
                 </div>
 

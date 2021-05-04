@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import M from 'materialize-css';
-import forgetImage from '../../images/forgetpassword.svg';
+import forgetImage from '../../images/changepassword.svg';
 
 const NewPassword = () => {
     document.title = "Reset Password | Friengage";
