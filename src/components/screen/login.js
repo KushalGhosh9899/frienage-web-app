@@ -6,7 +6,7 @@ import loginImage from '../../images/loginscreen.svg'
 
 
 const Login = () => {
-    document.title = "Login | Friengage";
+    document.title = "Sign In | Friengage";
     const { state, dispatch } = useContext(userContext);
     const History = useHistory();
     const [password, setPassword] = useState("");

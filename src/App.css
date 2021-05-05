@@ -5,7 +5,29 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-
+@media screen and (max-width: 960px) {
+    
+}
+/* width */
+::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #00C5FF; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+  }
 a {
     color: black!important;
 }
@@ -53,7 +75,7 @@ a {
 }
 
 .home {
-    margin: 50px 0px;
+    margin: 10vh 0px;
 }
 
 .home-card {
@@ -85,7 +107,6 @@ i {
 }
 
 .svg-graphics {
-    background: rgba(0, 197, 255, .1);
     width: 60%;
     height: 100%;
     border-radius: 0px 100px 100px 0px;
@@ -108,7 +129,7 @@ i {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
+    max-width: 80%!important;
     height: auto;
     position: relative;
     top: 25%;
@@ -117,7 +138,7 @@ i {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
+    max-width: 70%!important;
     height: auto;
     position: relative;
     top: 5%;
@@ -203,18 +224,19 @@ i {
     font-variant: small-caps;
 }
 .nav-wrapper{
-    box-shadow: none;
+    position: fixed;
+    z-index: 10;
+    margin-bottom: 10vh;
 }
-.btn-default, .btn{    
-    width: 100%;
+.btn-default, .btn{
     border:none;
-    padding: 1rem 3rem;
+    padding: 1rem 4rem;
     border-radius: 15px;
     font-weight: bold;
     font-size: 0.9rem;
     text-transform: uppercase;
 }
-.dark{
+.dark{    
     color: white;
     background-color: #00C5FF;
 }
@@ -224,7 +246,8 @@ i {
     background-color:white ;
     border:1px solid #00C5FF;    
 }
-.light{    
+.light{ 
+    width: 100%;   
     color: #00C5FF;
     background-color:white ;
     border:1px solid #00C5FF;
@@ -302,4 +325,143 @@ nav ul a:hover {
 }
 .list-items{
     margin: 1rem 0;
+}
+.phone{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.black-txt{
+    color:black;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: 0.4rem;
+}
+.blue-txt{
+    color:#00C5FF;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 5rem;
+}
+.side1{
+    position: relative;    
+    top:50%;
+    transform: translate(-0%, -50%)
+}
+.side2{
+    position: relative;
+    top:50%;
+    transform: translate(-0%, -50%);
+}
+.screen1{    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%!important;
+    height: auto;
+}
+.startup-para{
+    color:black;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;    
+}
+.float-btn{
+    position: absolute;
+    top :90%;
+    left: 50%;
+    transform: translate(-50%,0%);
+    background-color:#00C5FF;
+}
+.float-btn:hover{
+    background-color: white;
+    border:1px solid #00C5FF;
+}
+.float-btn:hover >i {
+    color:#00C5FF
+}
+.top-btn{
+    position:fixed;
+    top:90%;
+    right:2%;
+    background-color: white;
+    border:1px solid #00C5FF;
+}
+.top-btn>i{
+    color:#00C5FF
+}
+.top-btn:hover ,.top-btn:hover>i{    
+    background-color:#00C5FF;
+    color:white;
+}
+.features-svg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70%!important;
+    height: auto;
+}
+.featured-head{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3rem;
+    color:#00C5FF!important;
+    font-weight: bold;
+    margin-bottom:5%;
+    padding-top: 5%;
+    letter-spacing: 0.25rem;
+}
+.featued-icon {
+    color:#00C5FF;
+    font-size: 5rem;
+    width: 100%;
+}
+.featured-sub-head{
+    color:#00C5FF;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+.featured-para{
+    color:black;
+    font-size: 1.1rem;
+    text-align: center;    
+}
+.startup-row{
+    margin:15% 0!important;
+}
+.row-st{
+    height:100%!important;
+    margin-top:5%!important;
+}
+.startup-container{
+    height: 100vh;
+    background: rgba(0, 197, 255, .1);
+}
+
+.custom-header{
+    background:rgba(0,0,0,0.0);
+    position: fixed;
+    z-index: 10;
+    padding:0 15%;
+    height: max-content;
+}
+.fixed{
+    background-color: white;
+}
+.visble-true{
+    display: block;
+}
+.visble-false{
+    display: none;
+}
+.logo-txt{
+    text-transform: uppercase;
+    font-family:'Montserrat', sans-serif !important;
+    letter-spacing: 0.8rem;
+    color: #00c5ff !important;
+    font-weight: bolder;
 }

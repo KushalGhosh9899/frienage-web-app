@@ -4,9 +4,20 @@ import { userContext } from '../App';
 import M from 'materialize-css';
 
 const Navbar = () => {
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    }
+    else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
+
   const searchModal = useRef(null)
   const [search, setSearch] = useState('');
-  const [userDetails,setUserDetails] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
   const history = useHistory();
   const { state, dispatch } = useContext(userContext);
   useEffect(() => {
@@ -29,58 +40,66 @@ const Navbar = () => {
       ]
     } else {
       return [
-        <Link to="/login"><button className="btn-default dark waves-effect waves-light">sign in</button></Link>
+        <Link to="/login"><button className="btn-default light waves-effect waves-light">sign in</button></Link>
       ]
     }
   }
 
-  const fetchUsers = (query) =>{
+  const fetchUsers = (query) => {
     setSearch(query);
-    fetch('/search-users',{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json"
+    fetch('/search-users', {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
       },
-      body:JSON.stringify({
-        query:query
+      body: JSON.stringify({
+        query: query
       })
-    }).then(res=>res.json())
-    .then(results=>{
-      setUserDetails(results.user)
-    })
+    }).then(res => res.json())
+      .then(results => {
+        setUserDetails(results.user)
+      })
   }
+
+
+
   return (
-    <nav className="transparent z-depth-0">
-    <div className="nav-wrapper">
-      <Link to={state ? "/" : "/startup"} className="brand-logo">Instagram</Link>
-      <ul id="nav-mobile" className="right">
-        {renderList()}
-      </ul>
-    </div>
+    <nav className={state ? "nav-wrapper white" : "nav-wrapper white" || colorChange ? 'custom-header fixed' : 'z-depth-0 custom-header'}>
+      <div>
 
-    {/* <!-- Modal Structure --> */}
-    <div id="modal1" className="modal" ref={searchModal} style={{ color: "black" }}>
-      <div className="modal-content">
-        <input
-          type="text"
-          placeholder="search users"
-          value={search}
-          onChange={(e) => fetchUsers(e.target.value)}
-        />
-        <ul className="collection">
-          {userDetails.map(item=>{
-            return <Link to={item._id !== state._id?"/profile/"+item._id : "/profile"} onClick={()=>{
-              M.Modal.getInstance(searchModal.current).close()
-              setSearch('')
-            }}><li className="collection-item" style={{ color: "black" }}>{item.email}</li></Link>
-          })}
+        <Link to={state ? "/" : "/startup"} className="brand-logo logo-txt">
+          Friengage
+        </Link>
+
+        <ul id="nav-mobile" className="right">
+          {renderList()}
         </ul>
-      </div>
 
-      <div className="modal-footer">
-        <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>Close</button>
+
+        {/* <!-- Modal Structure --> */}
+        <div id="modal1" className="modal" ref={searchModal} style={{ color: "black" }}>
+          <div className="modal-content">
+            <input
+              type="text"
+              placeholder="search users"
+              value={search}
+              onChange={(e) => fetchUsers(e.target.value)}
+            />
+            <ul className="collection">
+              {userDetails.map(item => {
+                return <Link to={item._id !== state._id ? "/profile/" + item._id : "/profile"} onClick={() => {
+                  M.Modal.getInstance(searchModal.current).close()
+                  setSearch('')
+                }}><li className="collection-item" style={{ color: "black" }}>{item.email}</li></Link>
+              })}
+            </ul>
+          </div>
+
+          <div className="modal-footer">
+            <button className="modal-close waves-effect waves-green btn-flat" onClick={() => setSearch('')}>Close</button>
+          </div>
+        </div>
       </div>
-    </div>
     </nav>
   )
 }
