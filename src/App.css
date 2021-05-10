@@ -905,3 +905,27 @@ margin: 1rem 0rem;
     font-size: 0.8rem;
     letter-spacing: 0.05rem;
 }
+.follow-btn{
+    position: absolute;
+    top:45%;
+    right: 12.5%;
+    z-index: 9;
+}
+.profile > .dark
+{    
+    padding: 0.7rem 3rem;
+    color: white !important;
+}
+.profile > .dark:hover
+{    
+    color: #00C5FF !important;
+}
+.profile > .light
+{    
+    padding: 0.7rem 3rem;
+    color: #00C5FF !important;
+}
+.profile > .light:hover
+{    
+    color: white !important;
+}

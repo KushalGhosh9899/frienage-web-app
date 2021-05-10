@@ -4,6 +4,7 @@ import coverpic from '../../images/coverpic.jpg';
 import { userContext } from '../../App';
 
 const Profile = () => {
+    document.title = "My Profile | Friengage";
     const [commentBox, showCommentBox] = useState(false);
     const [data, setData] = useState([]);
     const { state, dispatch } = useContext(userContext);
@@ -447,11 +448,11 @@ const Profile = () => {
                         followers.map(item => {
                             return (
                                 <div className="people">
-                                    <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                    <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                         <img src={item.pic} />
                                     </Link>
                                     <div className="following-details">
-                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                             <span className="following-name">
                                                 {item.name}
                                             </span>
@@ -461,7 +462,7 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                             <button className="btn-default dark">view profile</button>
                                         </Link>
                                     </div>
@@ -485,11 +486,11 @@ const Profile = () => {
                         : following.map(item => {
                             return (
                                 <div className="people">
-                                    <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                    <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                         <img src={item.pic} />
                                     </Link>
                                     <div className="following-details">
-                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                             <span className="following-name">
                                                 {item.name}
                                             </span>
@@ -499,7 +500,7 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ? "/profile" : "/profile/" + item._id}>
                                             <button className="btn-default dark">view profile</button>
                                         </Link>
                                     </div>
