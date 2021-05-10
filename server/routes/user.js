@@ -10,7 +10,7 @@ router.get('/user/:id',requireLogin,(req,res)=>{
     .select("-password")
     .then(user=>{
         Post.find({postedBy:req.params.id})
-        .populate("postedBy","_id name")
+        .populate("postedBy","_id name pic")
         .exec((err,posts)=>{
             if(err){
                 return res.status(422).json({error:err})
@@ -35,6 +35,28 @@ router.get('/findfollowers',requireLogin,(req,res)=>{
 
 router.get('/findfollowings',requireLogin,(req,res)=>{
     User.find({followers:req.user._id})
+    .select("-password")
+    .then(user=>{
+        // console.log(user)
+        res.json({user})
+    }).catch(err=>{
+        return res.status(404).json({error:"User not found"})
+    })
+})
+
+router.put('/finduserfollowers',requireLogin,(req,res)=>{
+    User.find({following:req.body.user_id})
+    .select("-password")
+    .then(user=>{
+        // console.log(user)
+        res.json({user})
+    }).catch(err=>{
+        return res.status(404).json({error:"User not found"})
+    })
+})
+
+router.put('/finduserfollowings',requireLogin,(req,res)=>{
+    User.find({followers:req.body.user_id})
     .select("-password")
     .then(user=>{
         // console.log(user)

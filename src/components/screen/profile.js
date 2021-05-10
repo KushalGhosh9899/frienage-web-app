@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import coverpic from '../../images/coverpic.jpg';
 import { userContext } from '../../App';
-import { type } from 'jquery';
 
 const Profile = () => {
     const [commentBox, showCommentBox] = useState(false);
@@ -448,11 +447,11 @@ const Profile = () => {
                         followers.map(item => {
                             return (
                                 <div className="people">
-                                    <Link to={"/profile/" + item._id}>
+                                    <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                         <img src={item.pic} />
                                     </Link>
                                     <div className="following-details">
-                                        <Link to={"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                             <span className="following-name">
                                                 {item.name}
                                             </span>
@@ -462,7 +461,7 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <Link to={"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                             <button className="btn-default dark">view profile</button>
                                         </Link>
                                     </div>
@@ -486,11 +485,11 @@ const Profile = () => {
                         : following.map(item => {
                             return (
                                 <div className="people">
-                                    <Link to={"/profile/" + item._id}>
+                                    <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                         <img src={item.pic} />
                                     </Link>
                                     <div className="following-details">
-                                        <Link to={"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                             <span className="following-name">
                                                 {item.name}
                                             </span>
@@ -500,7 +499,7 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <Link to={"/profile/" + item._id}>
+                                        <Link to={item._id == state._id ?"/profile":"/profile/" + item._id}>
                                             <button className="btn-default dark">view profile</button>
                                         </Link>
                                     </div>
