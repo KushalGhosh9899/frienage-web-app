@@ -22,6 +22,28 @@ router.get('/user/:id',requireLogin,(req,res)=>{
     })
 })
 
+router.get('/findfollowers',requireLogin,(req,res)=>{
+    User.find({following:req.user._id})
+    .select("-password")
+    .then(user=>{
+        // console.log(user)
+        res.json({user})
+    }).catch(err=>{
+        return res.status(404).json({error:"User not found"})
+    })
+})
+
+router.get('/findfollowings',requireLogin,(req,res)=>{
+    User.find({followers:req.user._id})
+    .select("-password")
+    .then(user=>{
+        // console.log(user)
+        res.json({user})
+    }).catch(err=>{
+        return res.status(404).json({error:"User not found"})
+    })
+})
+
 router.put('/follow',requireLogin,(req,res)=>{
     User.findByIdAndUpdate(req.body.followId,{
         $push:{followers:req.user._id}

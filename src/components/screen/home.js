@@ -18,6 +18,7 @@ const Home = () => {
             }
         }).then(res => res.json())
             .then(result => {
+                // console.log(result.posts)
                 setData(result.posts);
             })
     }, [])

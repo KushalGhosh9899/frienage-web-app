@@ -28,7 +28,6 @@ const Navbar = () => {
   }, [])
 
   const location = useLocation();
-  console.log(location.pathname)
   const renderList = () => {
     if (state) {
       return [
@@ -140,6 +139,7 @@ const Navbar = () => {
             <div className="logout-buttons">
               <button className="modal-close btn-default light waves-effect waves-light"> No </button>
               <button className="btn-default dark waves-effect waves-light" onClick={() => {
+                setDropDown(false)
                 localStorage.clear()
                 dispatch({ type: "CLEAR" })
                 history.push('/login')
