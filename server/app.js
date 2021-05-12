@@ -17,13 +17,16 @@ mongoose.connection.on('error',(error)=>{
     console.log("Connection error: ",error);
 })
 
+
 require('./models/user');
 require('./models/post');
+require('./models/messages');
 
 app.use(express.json());
 app.use(require('./routes/auth'));
 app.use(require('./routes/post'));
 app.use(require('./routes/user'));
+app.use(require('./routes/messages'));
 
 app.listen(PORT,()=>{
     console.log("server is running on ",PORT);

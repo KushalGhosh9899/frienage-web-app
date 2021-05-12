@@ -1,0 +1,119 @@
+.message-section {
+    display: flex;
+    padding-top: 2%;
+    width: 75%;
+    height: 100vh;
+}
+.message-box{
+    width: 70%;
+}
+.messages {
+    margin-top: 5%;
+    padding: 2%;
+    height: 85%!important;
+    overflow: scroll;
+}
+.message-box>.send-msg-button{
+    position: relative;
+    top:-4rem;
+    padding: 0 2rem;
+}
+.message-box>.send-msg-button>.input-field input[type=text] {
+    margin: 0!important;
+    width: 93%;
+    padding: 0 1rem;
+}
+
+.messages>div>img {
+    object-fit: cover;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+}
+
+.message-profile {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #00C5FF;
+}
+
+.message-profile>img {
+    display: flex;
+    margin: 0 auto!important;
+    width: 12vw;
+    height: 12vw;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 10%!important;
+    transition: transform 200ms;
+}
+
+.message-profile>img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.message-profile>span {
+    display: block;
+    color: white;
+    text-align: center;
+}
+
+.message-profile>.name {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.message-profile>.email {
+    font-size: 1.3rem!important;
+    letter-spacing: 0.1rem;
+}
+.message-content{
+    margin-left: 1%;
+    display: inline-block;
+    max-width: 60%;
+}
+.message-txt{
+    display: block;
+    background-color: #00C5FF!important;
+    color:white;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0rem 1.5rem 1.5rem 1.5rem;
+}
+time{
+    color:grey;
+    float: right;
+    margin-right: 2%;
+    font-size: 0.9rem;
+}
+.another{
+    display: flex;
+}
+.another>.message-content{
+    margin-top: 1%;
+}
+.you{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+.you>img{
+    position: relative;
+    top:-1.5rem
+}
+.you>.message-content{
+    margin-right: 1rem;
+}
+.you>.message-content>.message-txt{
+    background-color: #EDF2FC !important;
+    color:black;
+    border-radius: 1.5rem 0rem 1.5rem 1.5rem;
+}
+.you>.message-content>time{
+    float: left;
+    margin-left: 2%;
+}

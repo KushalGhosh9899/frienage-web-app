@@ -13,6 +13,7 @@ import Reset from './components/screen/reset';
 import NewPassword from './components/screen/newPassword';
 import Startup from './components/screen/startup';
 import Footer from './components/screen/footer';
+import Message from './components/screen/message';
 
 import { reducer, initialState } from './reducers/userReducer';
 
@@ -62,6 +63,9 @@ const Routing = () => {
       </Route>
       <Route path="/reset-password/:token" >
         <NewPassword  />
+      </Route>
+      <Route path="/messages">
+        <Message />
       </Route>
     </Switch>
   );

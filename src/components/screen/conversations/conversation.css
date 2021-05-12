@@ -1,0 +1,50 @@
+.list-profile {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 5%;
+    border-radius: 20px;
+    transition: transform 10ms;
+    margin-bottom: 3.5%;
+}
+
+.list-profile>img {
+    object-fit: cover;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 50%;
+}
+
+.list-profile>div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    width: 60%;
+}
+
+.list-profile>div>span {
+    font-size: 1.3rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+.list-profile:hover {
+    background-color: #00C5FF;
+    color: white;
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.list-profile:hover>div>.email {
+    color: white!important;
+}
+
+.list-profile:hover>img {
+    border: 1px solid white
+}
+
+.email {
+    font-size: 1.05rem!important;
+    font-weight: 500!important;
+    color: #00C5FF
+}
