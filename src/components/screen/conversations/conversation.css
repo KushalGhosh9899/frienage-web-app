@@ -1,7 +1,7 @@
 .list-profile {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: #E5F9FF;
     padding: 5%;
     border-radius: 20px;
     transition: transform 10ms;

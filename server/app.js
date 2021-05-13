@@ -21,6 +21,7 @@ mongoose.connection.on('error',(error)=>{
 require('./models/user');
 require('./models/post');
 require('./models/messages');
+require('./models/conversation');
 
 app.use(express.json());
 app.use(require('./routes/auth'));

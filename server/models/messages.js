@@ -1,26 +1,15 @@
 const mongoose = require('mongoose');
 
-const roomSchema = new mongoose.Schema({
-    id1:{
-        type:String,
-        required:true
+const MessageSchema = new mongoose.Schema({
+    conversationId:{
+        type:String
     },
-    id2:{
+    sender:{
         type:String,
-        required:true
     },
-    message:{
-        type:String,
-        required:true
-    },
-    senderId:{
-        type:String,
-        required:true
-    },
-    sentOn:{
-        type:String,
-        required:true
+    text:{
+        type:String
     }
-})
+},{timestamps:true})
 
-mongoose.model('Message',roomSchema);
+mongoose.model('Message',MessageSchema);

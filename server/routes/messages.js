@@ -3,48 +3,58 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const requireLogin = require('../middleware/requireLogin');
 const Message = mongoose.model("Message");
+const Conversation = mongoose.model("Conversation");
 
-router.post('/sendmessage', requireLogin, (req, res) => {
-    const { id1, messageContent } = req.body;
-    if (!id1 || !messageContent) {
-        return res.status(422).json({ error: "Cannot send Empty Message" });
-    }
+//new conversation
 
-    let date_ob = new Date();
-    let ampm='AM';
-    // current hours    
-    let hours = date_ob.getHours();
-    // current minutes
-    let minutes = date_ob.getMinutes();
-
-    if (hours > 12 && minutes > 01) {
-        hours = hours - 12;
-        ampm='PM';
-    }
-    let sentTime = hours + ':' + minutes +' '+ ampm;
-
-    const sendMessage = new Message({
-        id1,
-        id2: req.user._id,
-        message: messageContent,
-        senderId: req.user._id,
-        sentOn: sentTime
+router.post('/conversation',requireLogin,(req,res)=>{
+    const newConversation = new Conversation({
+        members:[req.body.senderId,req.body.receiverId],
     })
-    sendMessage.save().then(result => {
-        res.json({ result })
-    })
-        .catch(err => {
-            console.log(err);
-        })
 
-})
-router.get('/viewmessage',requireLogin,(req,res)=>{
-    Message.find()
-    .then(result => {
-        res.json({ result });
+    newConversation.save().then(result=>{
+        return res.status(200).json({result})
     })
-    .catch(err => {
-        console.log(err);
+    .catch(err=>{
+        console.log(err)
     })
 })
+
+//get conversation of a user
+
+router.get('/conversation/:userid',requireLogin,(req,res)=>{
+    Conversation.find({
+        members:{$in:[req.params.userid]}
+    }).then(result=>{
+        return res.status(200).json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+
+//Add Message
+router.post('/message',requireLogin,(req,res)=>{
+    const newMessage = new Message(req.body)
+    newMessage.save().then(result=>{
+        return res.status(200).json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+//Get Message
+router.get('/message/:conversationId',requireLogin,(req,res)=>{
+    Message.find({
+        conversationId: req.params.conversationId
+    }).then(result=>{
+        return res.status(200).json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+
+})
+
+
 module.exports = router;
