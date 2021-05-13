@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import Conversation from '../screen/conversations/conversation';
 import AllMessages from '../screen/message/message'
 import { userContext } from '../../App';
+import {io} from 'socket.io-client';
 
 
 const Message = () => {
@@ -9,10 +10,36 @@ const Message = () => {
     const { state, dispatch } = useContext(userContext);
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
+    const [convoID, setConvoID] = useState(null);
     const [messages, setMessages] = useState([]);
     const userid = JSON.parse(localStorage.getItem("user"));
     const [newMessage, setNewMessage] = useState("");
+    const [arrivalMessage, setArrivalMessage] = useState(null);
     const scrollRef = useRef()
+    const socket = useRef()
+
+    useEffect(()=>{
+        socket.current = io('ws://localhost:8900');
+        socket.current.on("getMessage",data=>{
+            setArrivalMessage({
+                sender:data.senderId,
+                text:data.text,
+                createdAt:Date.now()
+            })
+        })
+    },[])
+
+    useEffect(()=>{
+        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)&&
+        setMessages((prev)=>[...prev,arrivalMessage])
+    },[arrivalMessage,currentChat])
+
+    useEffect(()=>{
+        socket.current.emit("addUser",userid._id)
+        socket.current.on("getUsers",users=>{
+            // console.log(users)
+        })
+    },[userid])
 
 
     useEffect(() => {
@@ -32,8 +59,8 @@ const Message = () => {
     }, [])
     // console.log(currentChat)
 
-    useEffect(() => {
-        fetch(`/message/${currentChat}`, {
+    useEffect(() => {        
+        fetch(`/message/${convoID}`, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt"),
                 "Content-Type": "application/json",
@@ -48,10 +75,17 @@ const Message = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const message = {
-            conversationId: currentChat,
+            conversationId: currentChat._id,
             sender: userid._id,
             text: newMessage,
         }
+        const receiverId = currentChat.members.find(member=> member!==userid._id)
+        socket.current.emit("sendMessage",{
+            senderId:userid._id,
+            receiverId,
+            text:newMessage
+        })
+
         fetch('/message', {
             method: "post",
             headers: {
@@ -66,10 +100,12 @@ const Message = () => {
             .then(result => {
                 setMessages([...messages, result.data])
                 // setConversations(result.data);
-                console.log(result.data)
+                // console.log(result.data)
                 setNewMessage('')
             })
     }
+
+
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
     }, [messages])
@@ -84,7 +120,10 @@ const Message = () => {
                     </div>
                     {
                         conversations.map((item) => (
-                            <div onClick={() => setCurrentChat(item._id)}>
+                            <div onClick={() => {
+                                setCurrentChat(item)
+                                setConvoID(item._id)
+                            }}>
                                 <Conversation conversation={item} currentUser={userid._id} />
                             </div>
 
