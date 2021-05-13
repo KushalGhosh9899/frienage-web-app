@@ -1,13 +1,40 @@
 import './conversation.css';
+import { useEffect, useState } from 'react';
 
-const Conversation = () => {
+const Conversation = ({ conversation, currentUser }) => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const friendId = conversation.members.find((m) => m !== currentUser);
+
+        fetch(`/user/${friendId}`, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt"),
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setUser(result.user);
+                // console.log(result.user)
+            })
+    }, [currentUser, conversation])
+
     return (
-        <div className="list-profile">
-            <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-            <div>
-                <span>Kushal Ghosh</span>
-                <span className="email">@kushalghosh9899@gmail.com</span>
-            </div>
+
+        <div>
+            {
+                user ?
+                    <div className="list-profile">
+
+                        <img src={user.pic} />
+                        <div>
+                            <span>{user.name}</span>
+                            <span className="email">{user.email}</span>
+                        </div>
+                    </div>
+                    :
+                    "...loading"
+            }
+
         </div>
     )
 }

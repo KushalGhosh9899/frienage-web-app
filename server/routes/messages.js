@@ -12,8 +12,8 @@ router.post('/conversation',requireLogin,(req,res)=>{
         members:[req.body.senderId,req.body.receiverId],
     })
 
-    newConversation.save().then(result=>{
-        return res.status(200).json({result})
+    newConversation.save().then(data=>{
+        return res.status(200).json({data})
     })
     .catch(err=>{
         console.log(err)
@@ -25,8 +25,8 @@ router.post('/conversation',requireLogin,(req,res)=>{
 router.get('/conversation/:userid',requireLogin,(req,res)=>{
     Conversation.find({
         members:{$in:[req.params.userid]}
-    }).then(result=>{
-        return res.status(200).json({result})
+    }).then(data=>{
+        return res.status(200).json({data})
     })
     .catch(err=>{
         console.log(err)
@@ -35,9 +35,9 @@ router.get('/conversation/:userid',requireLogin,(req,res)=>{
 
 //Add Message
 router.post('/message',requireLogin,(req,res)=>{
-    const newMessage = new Message(req.body)
-    newMessage.save().then(result=>{
-        return res.status(200).json({result})
+    const newMessage = new Message(req.body.message)
+    newMessage.save().then(data=>{
+        return res.status(200).json({data})
     })
     .catch(err=>{
         console.log(err)
@@ -47,8 +47,8 @@ router.post('/message',requireLogin,(req,res)=>{
 router.get('/message/:conversationId',requireLogin,(req,res)=>{
     Message.find({
         conversationId: req.params.conversationId
-    }).then(result=>{
-        return res.status(200).json({result})
+    }).then(data=>{
+        return res.status(200).json({data})
     })
     .catch(err=>{
         console.log(err)

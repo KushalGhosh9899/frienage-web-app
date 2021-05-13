@@ -24,7 +24,7 @@
     padding: 0 1rem;
 }
 
-.messages>div>img {
+.messages>div>div>img {
     object-fit: cover;
     width: 3vw;
     height: 3vw;
@@ -116,4 +116,7 @@ time{
 .you>.message-content>time{
     float: left;
     margin-left: 2%;
+}
+.you,.another{
+    margin-bottom: 1rem;
 }

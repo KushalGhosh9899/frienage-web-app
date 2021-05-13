@@ -1078,6 +1078,7 @@ nav ul a:hover {
 
 .message-div {
     display: flex;
+    width: 100%;
 }
 
 .conversation {
@@ -1117,4 +1118,28 @@ nav ul a:hover {
 
 .add-msg>i:hover {
     color: #00C5FF;
+}
+.select-convo{
+    width: 75vw;
+    margin: auto auto;
+}
+.select-convo>span{
+    display: block;
+    text-align: center;
+    font-size: 2.5rem;
+    color:grey
+}
+.send-msg-btn{
+    background-color:#E5F9FF;
+    border: none;
+}
+.send-msg-btn:hover{
+    cursor: pointer;    
+    background-color:#E5F9FF;
+}
+.send-msg-btn>i{
+    color:#00C5FF;
+}
+#msg-box{
+    display: flex;
 }
