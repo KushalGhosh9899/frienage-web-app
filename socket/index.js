@@ -25,16 +25,18 @@ io.on("connection", (socket) =>{
     })
 
     //send
-    socket.on("sendMessage",({senderId,receiverId,text})=>{
+    socket.on("sendMessage",({senderId,receiverId,text,senderPic})=>{
         const user = getUser(receiverId);
         io.to(user.socketId).emit("getMessage",{
             senderId,
-            text
+            text,
+            senderPic
         })
     })
 
+
     //disconnect
-    socket.on("disconnected",()=>{
+    socket.on("disconnect",()=>{
         console.log("a user disconnected");
         removeUser(socket.id)
         io.emit("getUsers",users)

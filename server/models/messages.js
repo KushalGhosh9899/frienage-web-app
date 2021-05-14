@@ -9,6 +9,9 @@ const MessageSchema = new mongoose.Schema({
     },
     text:{
         type:String
+    },
+    senderPic:{
+        type:String
     }
 },{timestamps:true})
 

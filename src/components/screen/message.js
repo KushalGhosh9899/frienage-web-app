@@ -2,7 +2,8 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import Conversation from '../screen/conversations/conversation';
 import AllMessages from '../screen/message/message'
 import { userContext } from '../../App';
-import {io} from 'socket.io-client';
+import { io } from 'socket.io-client';
+import { useHistory } from 'react-router-dom';
 
 
 const Message = () => {
@@ -15,31 +16,38 @@ const Message = () => {
     const userid = JSON.parse(localStorage.getItem("user"));
     const [newMessage, setNewMessage] = useState("");
     const [arrivalMessage, setArrivalMessage] = useState(null);
-    const scrollRef = useRef()
-    const socket = useRef()
+    const scrollRef = useRef();
+    const socket = useRef();
+    const history = useHistory();
+    let cid = null;
+    let newcid = null;
+    const [currentID, setCurrentID] = useState(null);
 
-    useEffect(()=>{
+
+    useEffect(() => {
+        cid = history.location.search;
+        newcid = cid.replace('?id=', '');
         socket.current = io('ws://localhost:8900');
-        socket.current.on("getMessage",data=>{
+        socket.current.on("getMessage", data => {
             setArrivalMessage({
-                sender:data.senderId,
-                text:data.text,
-                createdAt:Date.now()
+                sender: data.senderId,
+                text: data.text,
+                createdAt: Date.now()
             })
         })
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)&&
-        setMessages((prev)=>[...prev,arrivalMessage])
-    },[arrivalMessage,currentChat])
+    useEffect(() => {
+        arrivalMessage && currentChat?.members.includes(arrivalMessage.sender) &&
+            setMessages((prev) => [...prev, arrivalMessage])
+    }, [arrivalMessage, currentChat])
 
-    useEffect(()=>{
-        socket.current.emit("addUser",userid._id)
-        socket.current.on("getUsers",users=>{
+    useEffect(() => {
+        socket.current.emit("addUser", userid._id)
+        socket.current.on("getUsers", users => {
             // console.log(users)
         })
-    },[userid])
+    }, [userid])
 
 
     useEffect(() => {
@@ -59,7 +67,7 @@ const Message = () => {
     }, [])
     // console.log(currentChat)
 
-    useEffect(() => {        
+    useEffect(() => {
         fetch(`/message/${convoID}`, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt"),
@@ -78,12 +86,14 @@ const Message = () => {
             conversationId: currentChat._id,
             sender: userid._id,
             text: newMessage,
+            senderPic:userid.pic
         }
-        const receiverId = currentChat.members.find(member=> member!==userid._id)
-        socket.current.emit("sendMessage",{
-            senderId:userid._id,
+        const receiverId = currentChat.members.find(member => member !== userid._id)
+        socket.current.emit("sendMessage", {
+            senderId: userid._id,
             receiverId,
-            text:newMessage
+            text: newMessage,
+            senderPic:userid.pic
         })
 
         fetch('/message', {
@@ -105,11 +115,29 @@ const Message = () => {
             })
     }
 
-
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
     }, [messages])
 
+    useEffect(() => {
+        let friendId = null
+        if (currentChat) {
+            friendId = currentChat.members.find(member => member !== userid._id)
+        }
+        // console.log(friendId)   
+
+        fetch(`/user/${friendId}`, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt"),
+                "Content-Type": "application/json",
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log("result = ",result.user)
+                setCurrentID(result.user)
+            })
+    }, [currentChat])
     return (
         <>
             <div class="message-div">
@@ -138,6 +166,8 @@ const Message = () => {
 
                         <div className="message-section">
                             <div className="message-box">
+                                <span>Chatting with  
+                                    <span>{currentID?' '+currentID.name:'..loading'}</span></span>
                                 <div className="messages">
                                     {
                                         messages.map((item) => (
@@ -173,11 +203,18 @@ const Message = () => {
                             </div>
 
                             {/* Profile Info of Sender */}
-                            <div className="message-profile">
-                                <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
-                                <span className="name">Kushal Ghosh</span>
-                                <span className="email">@kushalghosh9899@gmail.com</span>
-                            </div>
+                            {
+                                currentID ?
+
+                                    <div className="message-profile">
+                                        <img src={currentID.pic} />
+                                        <span className="name">{currentID.name}</span>
+                                        <span className="email">{currentID.email}</span>
+                                    </div>
+                                    :
+                                    '..loading'
+
+                            }
                         </div>
 
                         :

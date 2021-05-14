@@ -5,10 +5,22 @@
     height: 100vh;
 }
 .message-box{
+    padding-top: 3%;
     width: 70%;
 }
+.message-box>span{
+    text-align: center;
+    display: block;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e3ecff;
+
+}
+.message-box>span>span{
+    color:#00C5FF;
+    font-weight: bold;
+}
 .messages {
-    margin-top: 5%;
+    margin-top: 1%;
     padding: 2%;
     height: 85%!important;
     overflow: scroll;
@@ -41,6 +53,7 @@
 
 .message-profile>img {
     display: flex;
+    object-fit: cover;
     margin: 0 auto!important;
     width: 12vw;
     height: 12vw;
@@ -103,7 +116,7 @@ time{
 }
 .you>img{
     position: relative;
-    top:-1.5rem
+    top:-3rem
 }
 .you>.message-content{
     margin-right: 1rem;

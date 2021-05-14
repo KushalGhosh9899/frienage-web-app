@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { userContext } from '../../App'
-import { useParams, Link } from 'react-router-dom'
+import { userContext } from '../../App';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import coverpic from '../../images/coverpic.jpg';
 
 const Profile = () => {
@@ -10,6 +10,9 @@ const Profile = () => {
     const [viewImageModal, setViewImage] = useState(['']);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
+    const currentuser = JSON.parse(localStorage.getItem("user"));
+    const history = useHistory();
+    var conversation = null;
 
     const [userProfile, setProfile] = useState(null);
     const { state, dispatch } = useContext(userContext);
@@ -31,7 +34,7 @@ const Profile = () => {
                 setData(result.posts)
                 // console.log(result)
             })
-            
+
         findFollowers(userid);
         findFollowing(userid);
     }, [])
@@ -257,6 +260,49 @@ const Profile = () => {
             })
     }
 
+    const checkConversation = (findid) => {
+        fetch(`/findconversation/${findid}/${currentuser._id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log(result.data[0]._id)
+                if (result.data.length == 0) {
+                    //add conversation then move to messages
+                    newConversation(findid);
+                }
+                else if (result.data.length == 1) {
+                    //move to messages
+                    conversation = result.data[0]._id
+                    // console.log(conversation)
+                    history.push(`/messages?id=${conversation}`);
+                }
+            })
+    }
+
+    const newConversation = (findid) => {
+        fetch(`/conversation`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                senderId: findid,
+                receiverId: currentuser._id,
+            })
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log("from db", result)
+                conversation = result.data._id;
+                history.push(`/messages/${conversation}`);
+            })
+    }
+
     return (
         <>
             {
@@ -274,7 +320,7 @@ const Profile = () => {
                                 <a className="btn-default light follow-btn z-depth-5"
                                     onClick={() => unfollowUser()}
                                 >Unfollow User</a>
-                            
+
                         }
 
                         <div className="profile-top">
@@ -527,9 +573,19 @@ const Profile = () => {
                                                         <button className="btn-default dark">view profile</button>
                                                     </Link>
                                                 </div>
-                                                <div className="btn-div">
-                                                    <button className="btn-default light">Message</button>
-                                                </div>
+                                                {
+                                                    item._id !== state._id ?
+                                                        <div className="btn-div">
+                                                            <button
+                                                                onClick={() => {
+                                                                    checkConversation(item._id)
+                                                                }}
+                                                                className="btn-default light">Message</button>
+                                                        </div> :
+                                                        ""
+
+                                                }
+
                                             </div>
                                         )
                                     })
@@ -565,9 +621,18 @@ const Profile = () => {
                                                         <button className="btn-default dark">view profile</button>
                                                     </Link>
                                                 </div>
-                                                <div className="btn-div">
-                                                    <button className="btn-default light">Message</button>
-                                                </div>
+                                                {
+                                                    item._id !== state._id ?
+                                                        <div className="btn-div">
+                                                            <button
+                                                                onClick={() => {
+                                                                    checkConversation(item._id)
+                                                                }}
+                                                                className="btn-default light">Message</button>
+                                                        </div> :
+                                                        ""
+
+                                                }
                                             </div>
                                         )
                                     })

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useHistory} from 'react-router-dom';
 import coverpic from '../../images/coverpic.jpg';
 import { userContext } from '../../App';
 
@@ -14,6 +14,10 @@ const Profile = () => {
     const [viewImageModal, setViewImage] = useState(['']);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
+    const currentuser = JSON.parse(localStorage.getItem("user"));
+    const history = useHistory();
+    var conversation = null;
+
     useEffect(() => {
         fetch('/mypost', {
             headers: {
@@ -197,6 +201,49 @@ const Profile = () => {
         }).then(res => res.json())
             .then(result => {
                 setFollowing(result.user);
+            })
+    }
+
+    const checkConversation = (findid) => {
+        fetch(`/findconversation/${findid}/${currentuser._id}`, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result.data)
+                if (result.data.length == 0) {
+                    //add conversation then move to messages
+                    newConversation(findid);
+                }
+                else if (result.data.length == 1) {
+                    //move to messages
+                    // console.log(conversation)
+                    conversation = result.data[0]._id
+                    history.push(`/messages?id=${conversation}`);
+                }
+            })
+    }
+
+    const newConversation = (findid) => {
+        fetch(`/conversation`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+            body: JSON.stringify({
+                senderId: findid,
+                receiverId: currentuser._id,
+            })
+        })
+            .then(res => res.json())
+            .then(result => {
+                // console.log("from db", result)
+                conversation = result.data._id;
+                history.push(`/messages/${conversation}`);
             })
     }
 
@@ -467,7 +514,11 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <button className="btn-default light">Message</button>
+                                        <button 
+                                        onClick={() => {
+                                            checkConversation(item._id)
+                                        }}
+                                        className="btn-default light">Message</button>
                                     </div>
                                 </div>
                             )
@@ -505,7 +556,11 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <button className="btn-default light">Message</button>
+                                        <button 
+                                        onClick={() => {
+                                            checkConversation(item._id)
+                                        }}
+                                        className="btn-default light">Message</button>
                                     </div>
                                 </div>
                             )
