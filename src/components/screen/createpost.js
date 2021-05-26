@@ -59,7 +59,7 @@ const CreatePost = () => {
     }
     return (
         <div>
-            <div className="card auth-card z-depth-5 modal-trigger" data-target="createPostModal">
+            <div className="card auth-card z-depth-3 modal-trigger" data-target="createPostModal">
                 <h2>Create New Post</h2>
                 <div>
                     {/* For Post Input Field(Demo) */}
