@@ -22,6 +22,17 @@ router.get('/user/:id',requireLogin,(req,res)=>{
     })
 })
 
+// Expilicity used for Fetching Home Page Conversations ID
+router.get('/users/:id',requireLogin,(req,res)=>{
+    User.find({_id:req.params.id})
+    .select("-password")
+    .then(user=>{
+            res.json({user})
+    }).catch(err=>{
+        return res.status(404).json({error:"User not found"})
+    })
+})
+
 router.get('/findfollowers',requireLogin,(req,res)=>{
     User.find({following:req.user._id})
     .select("-password")

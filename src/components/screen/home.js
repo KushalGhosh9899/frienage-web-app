@@ -3,6 +3,7 @@ import { userContext } from '../../App';
 import { Link } from 'react-router-dom';
 import M from 'materialize-css';
 import CreatePost from './createpost';
+import Conversation from '../screen/conversations/conversation';
 
 const Home = () => {
     const [commentBox, showCommentBox] = useState(false);
@@ -13,6 +14,9 @@ const Home = () => {
 
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
+
+    const [conversations, setConversations] = useState([]);
+    const userid = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         M.Modal.init(viewImage.current);
@@ -27,6 +31,7 @@ const Home = () => {
             })
         findFollowers();
         findFollowing();
+        getdata();
     }, [])
 
     const likepost = (id) => {
@@ -161,13 +166,25 @@ const Home = () => {
                 setFollowing(result.user);
             })
     }
+    const getdata = async () => {
+        await fetch(`/conversation/${userid._id}`, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt"),
+                "Content-Type": "application/json",
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setConversations(result.data);
+            })
+    }
 
 
     return (
         <div className="home">
-            {/* Your Following */}
+            {/* Your Following and Conversations*/}
             <div className="sides">
-                <div className="z-depth-3">
+                {/* Followings */}
+                <div className="z-depth-1">
                     <div className="info">
                         <h2>Followings</h2>
                         <span>
@@ -202,6 +219,18 @@ const Home = () => {
 
                 </div>
 
+                {/* All Conversations */}
+                <div className="z-depth-1 conversations-home">
+                    <h2>All Conversations</h2>
+                    {
+                        conversations.map((item) => (
+                            <div onClick={() => window.location.href = '/messages'}>
+                                <Conversation conversation={item} currentUser={userid._id} />
+                            </div>
+                        ))
+                    }
+
+                </div>
             </div>
 
             <div className="center-side">
@@ -209,7 +238,7 @@ const Home = () => {
                 {
                     data.map(item => {
                         return (
-                            <div className="card home-card z-depth-3">
+                            <div className="card home-card z-depth-1">
                                 <div className="post-top">
                                     <Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"} >
                                         <img className="author-pic"
@@ -357,7 +386,7 @@ const Home = () => {
 
             {/* Your Followers */}
             <div className="sides">
-                <div className="z-depth-3">
+                <div className="z-depth-1">
                     <div className="info">
                         <h2>Your Followers</h2>
                         <span>

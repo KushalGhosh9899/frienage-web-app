@@ -505,8 +505,6 @@ nav ul a:hover {
     font-weight: bolder;
 }
 
-
-
 .card-image {
     height: 60vh!important;
     width: 100%!important;
@@ -1139,8 +1137,10 @@ nav ul a:hover {
 }
 
 .auth-card {
+    margin-top: 0!important;
     margin-bottom: 5% !important;
     padding: 3%;
+
     border-radius: 15px!important;
 }
 
@@ -1148,7 +1148,8 @@ nav ul a:hover {
     display: flex;
     flex-direction: column;
 }
-.auth-card>div>.text-fields{
+
+.auth-card>div>.text-fields {
     margin: 3% 0!important;
     background: none;
 }
@@ -1157,20 +1158,24 @@ nav ul a:hover {
     margin: 0 !important;
     font-size: 1.8rem;
 }
-.create-post-modal{
+
+.create-post-modal {
     padding: 10%!important;
 }
-.create-post-modal>form>h2{
-    color:#00C5FF;
+
+.create-post-modal>form>h2 {
+    color: #00C5FF;
     font-size: 2.2rem;
     font-weight: bold;
     text-align: center;
 }
-.create-post-modal>form>.btn-field{
+
+.create-post-modal>form>.btn-field {
     display: flex;
     justify-content: center;
     margin-bottom: 7%;
 }
+
 .home {
     padding: 10vh 0;
     width: 100%;
@@ -1184,53 +1189,81 @@ nav ul a:hover {
     margin-bottom: 5%;
     border-radius: 15px;
 }
-.sides{
-    flex:1;
+
+.sides {
+    flex: 1;
     padding: 0 5%;
     height: fit-content;
 }
-.center-side{
+
+.center-side {
     flex: 1.7;
 }
-.sides>div{    
+
+.sides>div {
     background-color: white;
     border-radius: 20px;
     padding: 4%;
 }
-.sides>div>.info>h2{
+
+.sides>div>.info>h2 {
     margin: 2% 5%;
     font-size: 1.2rem;
     font-weight: bold;
     color: grey;
 }
-.sides>div>.people{
+
+.sides>div>.people {
     margin: 0;
     background-color: white;
-    border:none;   
-    transition: 0.2s; 
+    border: none;
+    transition: 0.2s;
 }
-.sides>div>.people:hover{
+
+.sides>div>.people:hover {
     background-color: #00C5FF;
     cursor: pointer;
 }
-.sides>div>.people:hover>.following-details>a>span{
+
+.sides>div>.people:hover>.following-details>a>span {
     color: white !important;
 }
-.sides>div>.people:hover>a>img{
+
+.sides>div>.people:hover>a>img {
     border: 1px solid white;
 }
-.sides>div>.info{
+
+.sides>div>.info {
     display: flex;
     justify-content: space-between;
 }
-.sides>div>.info>span{
+
+.sides>div>.info>span {
     margin-right: 5%;
     background-color: #00C5FF;
-    height: fit-content ;
+    height: fit-content;
     border-radius: 50%;
     padding: 1% 3%;
-    color:white;
+    color: white;
     font-weight: bold;
     font-size: 0.9rem;
 }
 
+.conversations-home {
+    margin: 7% 0;
+}
+.conversations-home>h2{
+    margin: 2% 5%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: grey;    
+}
+.conversations-home>div>div>.list-profile{
+    background-color: white;
+    margin: 0;
+}
+.conversations-home>div>div>.list-profile:hover{
+    background-color: #00C5FF;
+    border-radius: 10px;
+
+}
