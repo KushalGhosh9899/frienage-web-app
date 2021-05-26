@@ -26,6 +26,10 @@ const postSchema = new mongoose.Schema({
             postedBy:{
                 type:ObjectId,
                 ref:"User"
+            },
+            timestamp: { 
+                type: Date, 
+                default: Date.now
             }
         }
     ],
@@ -33,6 +37,6 @@ const postSchema = new mongoose.Schema({
         type:ObjectId,
         ref:"User"
     },
-})
+},{timestamps:true})
 
 mongoose.model("Post",postSchema);

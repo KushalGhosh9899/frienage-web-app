@@ -1265,5 +1265,11 @@ nav ul a:hover {
 .conversations-home>div>div>.list-profile:hover{
     background-color: #00C5FF;
     border-radius: 10px;
-
+}
+.comment-details{
+    display: flex;
+    justify-content: space-between;
+}
+.comment-time{
+    font-size: 00.8rem;
 }
