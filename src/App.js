@@ -6,7 +6,6 @@ import Home from './components/screen/home';
 import Login from './components/screen/login';
 import Signup from './components/screen/signup';
 import Profile from './components/screen/profile';
-import CreatePost from './components/screen/createpost';
 import UserProfile from './components/screen/UserProfile';
 import SubscriberUserPosts from './components/screen/subscriberPost';
 import Reset from './components/screen/reset';
@@ -48,9 +47,6 @@ const Routing = () => {
       </Route>
       <Route exact path="/profile" >
         <Profile />
-      </Route>
-      <Route path="/createpost" >
-        <CreatePost />
       </Route>
       <Route path="/profile/:userid" >
         <UserProfile />

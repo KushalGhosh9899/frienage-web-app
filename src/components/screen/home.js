@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { userContext } from '../../App';
 import { Link } from 'react-router-dom';
 import M from 'materialize-css';
+import CreatePost from './createpost';
 
 const Home = () => {
     const [commentBox, showCommentBox] = useState(false);
@@ -137,7 +138,8 @@ const Home = () => {
 
 
     return (
-        <div className="home">
+        <div className="home">            
+        <CreatePost />
             {
                 data.map(item => {
                     return (

@@ -40,13 +40,6 @@ a {
     color: black!important;
 }
 
-.auth-card {
-    margin: 20vh auto;
-    max-width: 40%;
-    padding: 50px;
-    text-align: center;
-}
-
 .link {
     color: #00C5FF !important;
 }
@@ -518,7 +511,7 @@ nav ul a:hover {
 }
 
 .home-card {
-    max-width: 35%;
+    max-width: 40%;
     max-height: max-content;
     margin: 0 auto;
     margin-bottom: 2%;
@@ -1119,27 +1112,75 @@ nav ul a:hover {
 .add-msg>i:hover {
     color: #00C5FF;
 }
-.select-convo{
+
+.select-convo {
     width: 75vw;
     margin: auto auto;
 }
-.select-convo>span{
+
+.select-convo>span {
     display: block;
     text-align: center;
     font-size: 2.5rem;
-    color:grey
+    color: grey
 }
-.send-msg-btn{
-    background-color:#E5F9FF;
+
+.send-msg-btn {
+    background-color: #E5F9FF;
     border: none;
 }
-.send-msg-btn:hover{
-    cursor: pointer;    
-    background-color:#E5F9FF;
+
+.send-msg-btn:hover {
+    cursor: pointer;
+    background-color: #E5F9FF;
 }
-.send-msg-btn>i{
-    color:#00C5FF;
+
+.send-msg-btn>i {
+    color: #00C5FF;
 }
-#msg-box{
+
+#msg-box {
     display: flex;
+}
+
+.float-msg-btn {
+    position: absolute;
+    top: 45%;
+    right: 25%;
+}
+
+.auth-card {
+    margin: 0% auto;
+    margin-bottom: 2% !important;
+    max-width: 40%;
+    padding: 2%;
+    border-radius: 15px!important;
+}
+
+.auth-card>div {
+    display: flex;
+    flex-direction: column;
+}
+.auth-card>div>.text-fields{
+    margin: 3% 0!important;
+    background: none;
+}
+
+.auth-card>h2 {
+    margin: 0 !important;
+    font-size: 1.8rem;
+}
+.create-post-modal{
+    padding: 10%!important;
+}
+.create-post-modal>form>h2{
+    color:#00C5FF;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.create-post-modal>form>.btn-field{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7%;
 }

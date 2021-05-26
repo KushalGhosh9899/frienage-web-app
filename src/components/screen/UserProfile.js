@@ -322,6 +322,13 @@ const Profile = () => {
                                 >Unfollow User</a>
 
                         }
+                        <div className="float-msg-btn">
+                            <button
+                                onClick={() => {
+                                    checkConversation(userProfile.user._id)
+                                }}
+                                className="btn-default light">Message</button>
+                        </div>
 
                         <div className="profile-top">
                             <img className="profile-pic z-depth-5"
