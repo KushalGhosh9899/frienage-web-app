@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 
 const Message = () => {
-    document.title = "All Messages";
+    document.title = "All Messages | Friengage";
     const { state, dispatch } = useContext(userContext);
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);

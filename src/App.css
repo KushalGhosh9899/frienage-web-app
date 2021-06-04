@@ -1273,3 +1273,10 @@ nav ul a:hover {
 .comment-time{
     font-size: 00.8rem;
 }
+.profile-card{
+    width: 40%!important;
+    margin: 2% auto!important;
+}
+.subs-img{
+    object-fit: cover!important;
+}

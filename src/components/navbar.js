@@ -43,8 +43,8 @@ const Navbar = () => {
         </div>,
         <div className="profile-details">
           <Link to="/notifications">
-            <i class="material-icons notification">notifications_none
-          <span class="new-badge">4</span></i>
+            {/* <i class="material-icons notification">notifications_none
+          <span class="new-badge">4</span></i> */}
           </Link>
           <Link to='/profile' className="profile-details">
             <img className="author-pic-nav"

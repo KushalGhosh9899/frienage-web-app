@@ -7,7 +7,8 @@ import Conversation from '../screen/conversations/conversation';
 import Preloader from './preloader';
 import { format } from 'timeago.js';
 
-const Home = () => {
+const Home = () => { 
+    document.title = "News Feed | Friengage"; 
     const [commentBox, showCommentBox] = useState(false);
     const [data, setData] = useState([]);
     const { state, dispatch } = useContext(userContext);

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link , useHistory} from 'react-router-dom';
 import coverpic from '../../images/coverpic.jpg';
 import { userContext } from '../../App';
+import { format } from 'timeago.js';
 
 const Profile = () => {
     document.title = "My Profile | Friengage";
@@ -337,7 +338,7 @@ const Profile = () => {
                 {
                     data.map(item => {
                         return (
-                            <div className="card home-card z-depth-5">
+                            <div className="card profile-card home-card z-depth-5">
                                 <div className="post-top">
                                     <Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"} >
                                         <img className="author-pic"
@@ -351,7 +352,7 @@ const Profile = () => {
                                         </h5>
                                         <span className="post-time">
                                             <i className="material-icons time-icon">access_time</i>
-                                            <h5 className="postedtime">Posted at 11:30 AM</h5>
+                                            <h5 className="postedtime">{format(item.createdAt)}</h5>
                                         </span>
                                     </div>
                                     {item.postedBy._id == state._id
