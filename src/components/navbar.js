@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link to="/myfollowingpost" title="Following" className={location.pathname == '/myfollowingpost' ? "active-btn" : ""}>
             <i class="material-icons">supervisor_account</i></Link>
           <Link to="/messages" title="Messages" className={location.pathname == '/messages' ? "active-btn" : ""}><i class="material-icons">message</i></Link>
-          <Link to="/settings" title="Settings" className={location.pathname == '/settings' ? "active-btn" : ""}><i class="material-icons">settings</i></Link>
+          {/* <Link to="/profile" title="Settings" className={location.pathname == '/settings' ? "active-btn" : ""}><i class="material-icons">settings</i></Link> */}
         </div>,
         <div className="profile-details">
           <Link to="/notifications">

@@ -65,7 +65,7 @@ const Startup = () => {
                     <i className="material-icons">arrow_upward</i></a>
                 </a>
 
-                <div className="row" id="nextregion" style={{ marginBottom: "15%" }}>
+                {/* <div className="row" id="nextregion" style={{ marginBottom: "15%" }}>
                     <h2 className="featured-head">Features</h2>
                     <div className="col s12 m6 l8">
                         <img src={groupchat} alt="group-chat" className="features-svg responsive-img" />
@@ -76,7 +76,7 @@ const Startup = () => {
                             Users can add different Friends in their Video Chat and it is a real-time ongoing process.
                         </p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="row startup-row">
                     <div className="col s12 m6 l4 row-st" style={{ marginTop: "10%!important" }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link , useHistory} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import coverpic from '../../images/coverpic.jpg';
 import { userContext } from '../../App';
 import { format } from 'timeago.js';
@@ -258,17 +258,6 @@ const Profile = () => {
                 <img className="profile-pic z-depth-5"
                     src={state ? state.pic : "loading.."}
                 />
-                {/* <div className="file-field input-field">
-                            <div className="btn">
-                                <span>Update Pic</span>
-                                <input type="file" onChange={(e) => updatePhoto(e.target.files[0])}
-                                />
-                            </div>
-                            <div className="file-path-wrapper" style={{ display: "hidden" }}>
-                                <input className="file-path validate" type="text" />
-                            </div>
-                        </div> */}
-
                 <div className="author-details">
                     <div className="author-personal-details">
                         <span className="author-name">
@@ -515,11 +504,11 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <button 
-                                        onClick={() => {
-                                            checkConversation(item._id)
-                                        }}
-                                        className="btn-default light">Message</button>
+                                        <button
+                                            onClick={() => {
+                                                checkConversation(item._id)
+                                            }}
+                                            className="btn-default light">Message</button>
                                     </div>
                                 </div>
                             )
@@ -557,18 +546,38 @@ const Profile = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-div">
-                                        <button 
-                                        onClick={() => {
-                                            checkConversation(item._id)
-                                        }}
-                                        className="btn-default light">Message</button>
+                                        <button
+                                            onClick={() => {
+                                                checkConversation(item._id)
+                                            }}
+                                            className="btn-default light">Message</button>
                                     </div>
                                 </div>
                             )
                         })
                 }
             </div>
+
+            {/* Update Profile Pic */}
+
+            <div className={toggleTab == 5 ? "people-list toogle-tab-show" : "toogle-tab-hide"}>
+                <div className="file-field input-field">
+                    <h5 style={{ color: "#00C5FF" }}><center>You can Change your Display Picture from here.</center></h5>
+
+                    <div className="file-path-wrapper" style={{ display: "hidden" }}>
+                        <input className="file-path validate" type="text" />
+                    </div>
+                    <div className="btn-long">
+                        <span>Update Pic</span>
+                        <input type="file" onChange={(e) => updatePhoto(e.target.files[0])}
+                        />
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
     )
 }
 
